@@ -6,8 +6,17 @@ import 'package:docdoc/features/auth/presintion/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theming/icons.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
   const Signup({super.key});
+
+  @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  final TextEditingController   nameController = TextEditingController();
+  final TextEditingController   emailController = TextEditingController();
+  final TextEditingController   passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +58,20 @@ class Signup extends StatelessWidget {
                           Txtfield(
                             hintText: "Ahmed Tarek",
                             prefixIcon: Iconss.person,
+                              controller: nameController,
                           ),
                           const SizedBox(height: 15),
                           Text("Email", style: TxtStyle.size12w400black),
                           Txtfield(
                             hintText: "Email Address",
-                            prefixIcon: Iconss.email,
+                            prefixIcon: Iconss.email, controller: emailController,
                           ),
                           const SizedBox(height: 15),
                           Text("Password", style: TxtStyle.size12w400black),
                           Txtfield(
                             hintText: "Password",
                             prefixIcon: Iconss.pass,
+                              controller: passController,
                           ),
                           const SizedBox(height: 15),
                           Text(
@@ -70,7 +81,7 @@ class Signup extends StatelessWidget {
                           const SizedBox(height: 25),
                           AppBotton(
                             width: double.infinity,
-                            txt: 'Create Account',
+                            txt: 'Create Account', onTap: () {  },
                           ),
                           const SizedBox(height: 20),
                           Row(

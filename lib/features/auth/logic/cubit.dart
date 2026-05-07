@@ -10,6 +10,7 @@ class LoginCubit extends Cubit <AuthState> {
   final Dio dio = Dio();
 
   Future<ResponseModel?> login (RequestBody body) async{
+    emit(AuthLoadingState());
     try{ final Response = await dio.post(ConstApi.login , data: body.toJson());
 
       if(Response.statusCode ==200){
@@ -21,7 +22,7 @@ class LoginCubit extends Cubit <AuthState> {
       }
 
     } catch (e) {
-      emit(AuthErrorState());
+      emit(AuthErrorState(message: 'faild'));
 
     }
   }

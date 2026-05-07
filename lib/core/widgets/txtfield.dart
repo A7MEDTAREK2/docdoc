@@ -8,7 +8,7 @@ class Txtfield extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
 
-  const Txtfield({super.key, required this.hintText, required this.prefixIcon});
+  const Txtfield({super.key, required this.hintText, required this.prefixIcon, required TextEditingController controller});
 
   @override
   Widget build(BuildContext context) {
