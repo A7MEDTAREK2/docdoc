@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else if (state is AuthErrorState) {
 
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text("Error Login"),
+                          SnackBar(content: Text(state.message),
                               backgroundColor: Colors.red),
                         );
                       }
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return const Center(child: CircularProgressIndicator());
                   }
                     return AppBotton(width: double.infinity, txt: "Log In", onTap: () {
-s
+
                     context.read<LoginCubit>().login(
                       RequestBody(
                         email: emailController.text,
