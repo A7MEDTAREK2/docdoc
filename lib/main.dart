@@ -1,4 +1,7 @@
+import 'package:docdoc/core/widgets/home_Widget/app_bar_home.dart';
+import 'package:docdoc/features/auth/logic/cubit_signup.dart';
 import 'package:docdoc/features/auth/presintion/screens/login_screen.dart';
+import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,9 +37,11 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: BlocProvider(
-        create: (context) => LoginCubit(),
-        child: const LoginScreen(),),
+      home: MultiBlocProvider(
+        providers: [BlocProvider(create: (context) => LoginCubit()),
+          ],
+        child: const LoginScreen(),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }

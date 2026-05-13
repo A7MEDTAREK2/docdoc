@@ -4,12 +4,13 @@ import 'package:docdoc/core/widgets/app_botton.dart';
 import 'package:docdoc/core/widgets/txtfield.dart';
 import 'package:docdoc/features/auth/logic/cubit.dart';
 import 'package:docdoc/features/auth/logic/state.dart';
+import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import '../../../../core/theming/icons.dart';
-import '../../data/request_body.dart';
+import '../../data/login/request_body.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -92,7 +93,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Txtfield(hintText: "password",
                           prefixIcon: Iconss.pass,
-                          controller: passwordController),
+                          controller: passwordController , isPassword: true,),
+
 
                     ],
                   ),
@@ -106,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SnackBar(content: Text("Success Login"),
                               backgroundColor: Colors.green),
                         );
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homescreen(),));
 
                       } else if (state is AuthErrorState) {
 
@@ -113,6 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           SnackBar(content: Text(state.message),
                               backgroundColor: Colors.red),
                         );
+                        print("=======Email Data ${emailController.text}");
+                        print("=======Email Data ${passwordController.text}");
+
                       }
                     },
                     builder:(context , state){if (state is AuthLoadingState) {
@@ -126,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         password: passwordController.text,
                       ),
                     );
+
                   },
                     );
                   },

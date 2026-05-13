@@ -19,4 +19,6 @@ class TxtStyle {
       fontSize: 14, fontWeight: FontWeight.w800);
   static const TextStyle size14w300black = TextStyle(color: Colorsmanegments.black,
       fontSize: 14 , fontWeight: FontWeight.w300);
+  static const TextStyle size24w400primary = TextStyle(color: Colorsmanegments.Primary,
+      fontSize: 24 , fontWeight: FontWeight.w400);
 }
