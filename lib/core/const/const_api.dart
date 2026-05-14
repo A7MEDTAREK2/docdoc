@@ -5,6 +5,7 @@ class ConstApi {
   // end point
 static const String login = "$BaseUrl/auth/login";
   static const String signup = "$BaseUrl/auth/register";
+  static const String GetDOC = "$BaseUrl/doctor/index";
 
 
 }

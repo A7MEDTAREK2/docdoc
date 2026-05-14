@@ -1,4 +1,5 @@
 import 'package:docdoc/core/widgets/home_Widget/app_bar_home.dart';
+import 'package:docdoc/features/all_doctor/presentation/screens/screen%20doctor.dart';
 import 'package:docdoc/features/auth/logic/cubit_signup.dart';
 import 'package:docdoc/features/auth/presintion/screens/login_screen.dart';
 import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';

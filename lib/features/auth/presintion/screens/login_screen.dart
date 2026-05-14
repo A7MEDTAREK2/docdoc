@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import '../../../../core/theming/icons.dart';
+import '../../../all_doctor/presentation/screens/screen doctor.dart';
 import '../../data/login/request_body.dart';
 import 'signup_screen.dart';
 
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           const SnackBar(content: Text("Success Login"),
                               backgroundColor: Colors.green),
                         );
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> Homescreen(),));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AllDoctor(),));
 
                       } else if (state is AuthErrorState) {
 

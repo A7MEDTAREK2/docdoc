@@ -7,6 +7,7 @@ import 'package:docdoc/features/auth/presintion/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theming/icons.dart';
+import '../../../all_doctor/presentation/screens/screen doctor.dart';
 import '../../../home/presintion/screens/home screen.dart';
 import '../../data/signup/signup_request.dart';
 import '../../logic/cubit.dart';
@@ -24,8 +25,7 @@ class _SignupState extends State<Signup> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passConfirmController =
-  TextEditingController();
+  final TextEditingController passConfirmController = TextEditingController();
 
   int selectedGender = 0;
 
@@ -50,8 +50,7 @@ class _SignupState extends State<Signup> {
             builder: (context, constraints) {
               return SingleChildScrollView(
                 child: ConstrainedBox(
-                  constraints:
-                  BoxConstraints(minHeight: constraints.maxHeight),
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
@@ -67,8 +66,7 @@ class _SignupState extends State<Signup> {
                         ),
                         const SizedBox(height: 40),
                         Column(
-                          crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "Create Account",
@@ -80,10 +78,7 @@ class _SignupState extends State<Signup> {
                             ),
                             const SizedBox(height: 25),
 
-                            Text(
-                              "Full Name",
-                              style: TxtStyle.size12w400black,
-                            ),
+                            Text("Full Name", style: TxtStyle.size12w400black),
 
                             Txtfield(
                               hintText: "Ahmed Tarek",
@@ -93,10 +88,7 @@ class _SignupState extends State<Signup> {
 
                             const SizedBox(height: 15),
 
-                            Text(
-                              "Email",
-                              style: TxtStyle.size12w400black,
-                            ),
+                            Text("Email", style: TxtStyle.size12w400black),
 
                             Txtfield(
                               hintText: "Email Address",
@@ -106,10 +98,7 @@ class _SignupState extends State<Signup> {
 
                             const SizedBox(height: 15),
 
-                            Text(
-                              "phone",
-                              style: TxtStyle.size12w400black,
-                            ),
+                            Text("phone", style: TxtStyle.size12w400black),
 
                             Txtfield(
                               hintText: "01xxxxxxxxxx",
@@ -119,10 +108,7 @@ class _SignupState extends State<Signup> {
 
                             const SizedBox(height: 15),
 
-                            Text(
-                              "Password",
-                              style: TxtStyle.size12w400black,
-                            ),
+                            Text("Password", style: TxtStyle.size12w400black),
 
                             Txtfield(
                               hintText: "Password",
@@ -154,13 +140,10 @@ class _SignupState extends State<Signup> {
 
                             const SizedBox(height: 25),
 
-                            BlocConsumer< signupCubit , StateSignup>(
+                            BlocConsumer<signupCubit, StateSignup>(
                               listener: (context, state) {
-
                                 if (state is SignupLoadedState) {
-
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(
+                                  ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                       content: Text(
                                         "Account Created Successfully",
@@ -172,33 +155,23 @@ class _SignupState extends State<Signup> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          Homescreen(),
+                                      builder: (context) => AllDoctor(),
                                     ),
                                   );
-
-                                } else if (state
-                                is SignupErrorState) {
-
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(
+                                } else if (state is SignupErrorState) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
-                                      content:
-                                      Text(state.message),
-                                      backgroundColor:
-                                      Colors.red,
+                                      content: Text(state.message),
+                                      backgroundColor: Colors.red,
                                     ),
                                   );
                                 }
                               },
 
                               builder: (context, state) {
-
-                                if (state
-                                is SignupLoadingState) {
+                                if (state is SignupLoadingState) {
                                   return const Center(
-                                    child:
-                                    CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(),
                                   );
                                 }
 
@@ -207,24 +180,15 @@ class _SignupState extends State<Signup> {
                                   txt: 'Create Account',
 
                                   onTap: () {
-
-                                    context
-                                        .read<signupCubit>()
-                                        .signup(
+                                    context.read<signupCubit>().signup(
                                       SignupRequestBody(
-                                        name:
-                                        nameController.text,
-                                        email:
-                                        emailController.text,
-                                        phone:
-                                        phoneController.text,
-                                        gender: selectedGender
-                                            .toString(),
-                                        password:
-                                        passController.text,
+                                        name: nameController.text,
+                                        email: emailController.text,
+                                        phone: phoneController.text,
+                                        gender: selectedGender.toString(),
+                                        password: passController.text,
                                         passwordConfirmation:
-                                        passConfirmController
-                                            .text,
+                                            passConfirmController.text,
                                       ),
                                     );
                                   },
@@ -235,33 +199,25 @@ class _SignupState extends State<Signup> {
                             const SizedBox(height: 20),
 
                             Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
-                                  "Already have an account? ",
-                                ),
+                                const Text("Already have an account? "),
 
                                 InkWell(
                                   onTap: () {
-
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                            BlocProvider(
-                                              create: (context) =>
-                                                  LoginCubit(),
-                                              child:
-                                              const LoginScreen(),
-                                            ),
+                                        builder: (context) => BlocProvider(
+                                          create: (context) => LoginCubit(),
+                                          child: const LoginScreen(),
+                                        ),
                                       ),
                                     );
                                   },
 
                                   child: Text(
                                     "Log in here",
-                                    style:
-                                    TxtStyle.size14w800primary,
+                                    style: TxtStyle.size14w800primary,
                                   ),
                                 ),
                               ],
