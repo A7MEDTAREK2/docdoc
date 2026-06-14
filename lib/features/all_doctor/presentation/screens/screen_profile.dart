@@ -2,6 +2,7 @@ import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:docdoc/core/widgets/app_botton.dart';
 import 'package:docdoc/features/all_doctor/data/model_doctor.dart';
+import 'package:docdoc/features/appointment/presentation/appointment_Screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class ScreenProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colorsmanegments.backgroundapp,
-      appBar: AppBar(
+      appBar: AppBar(leading:IconButton(onPressed:() => Navigator.pop(context),  icon: Icon(Icons.arrow_back_ios_new)),
         backgroundColor: Colorsmanegments.backgroundapp,
         title: Text("Doctor Profile", style: TxtStyle.size24w400primary),
       ),
@@ -73,7 +74,13 @@ class ScreenProfile extends StatelessWidget {
             const SizedBox(height: 24),
 
 
-            AppBotton(width: double.infinity, txt: 'Book Now'),
+            InkWell(onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => BookAppointmentScreen(doctor: doctor),
+                ),
+              );
+            },child: AppBotton(width: double.infinity, txt: 'Book Now')),
           ],
         ),
       ),

@@ -7,6 +7,10 @@ class AppBarHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(leading: Icon(Icons.menu , color:  Colorsmanegments.Primary,),title: Text('CareConnect', style: TxtStyle.size24w400primary,),);
+    return AppBar(
+      leading: Icon(Icons.menu, color: Colorsmanegments.Primary),
+      title: Text('CareConnect', style: TxtStyle.size24w400primary),
+backgroundColor: Colorsmanegments.backgroundapp,
+    );
   }
 }

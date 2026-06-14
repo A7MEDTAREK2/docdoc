@@ -4,7 +4,10 @@ import 'package:docdoc/core/widgets/app_botton.dart';
 import 'package:docdoc/features/all_doctor/presentation/screens/screen_profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../appointment/logic/_cubit.dart';
+import '../../../appointment/presentation/appointment_Screen.dart';
 import '../../data/model_doctor.dart';
 
 class DoctorWidget extends StatelessWidget {
@@ -15,7 +18,7 @@ class DoctorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 8.0),
 
       child: Container(
         decoration: BoxDecoration(
@@ -59,8 +62,8 @@ class DoctorWidget extends StatelessWidget {
                           Icon(CupertinoIcons.time),
                           SizedBox(width: 4),
                           Text(doctor.startTime),
-                          SizedBox(width: 15,),
-                          Text(doctor.endTime)
+                          SizedBox(width: 15),
+                          Text(doctor.endTime),
                         ],
                       ),
                     ],
@@ -73,14 +76,31 @@ class DoctorWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: .center,
                 children: [
-                  AppBotton(width: 147, txt: 'book now'),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider(
+                            create: (context) => AppointmentCubit(),
+                            child: BookAppointmentScreen(doctor: doctor), // باصينا بيانات الدكتور هنا
+                          ),
+                        ),
+                      );
+                    },
+                    child: AppBotton(width: 147, txt: 'book now'),
+                  ),
                   SizedBox(width: 12),
-                  InkWell(onTap: (){
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) =>  ScreenProfile(doctor: doctor)),
-                    );
-                  },child: AppBotton(width: 147, txt: 'View Profile')),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => ScreenProfile(doctor: doctor),
+                        ),
+                      );
+                    },
+                    child: AppBotton(width: 147, txt: 'View Profile'),
+                  ),
                 ],
               ),
             ),

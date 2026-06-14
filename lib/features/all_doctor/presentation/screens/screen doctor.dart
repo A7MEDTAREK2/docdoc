@@ -3,7 +3,10 @@ import 'package:docdoc/features/all_doctor/logic/state.dart';
 import 'package:docdoc/features/all_doctor/presentation/wedgite/doctor_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../core/theming/colors manegments.dart';
+import '../../../../core/theming/txt_style.dart';
+
 
 class AllDoctor extends StatelessWidget {
   const AllDoctor({super.key});
@@ -12,7 +15,10 @@ class AllDoctor extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => DoctorCubit()..GetDoctor(),
-      child: Scaffold(
+      child: Scaffold(appBar:   AppBar(leading: IconButton(onPressed:() => Navigator.pop(context),  icon: Icon(Icons.arrow_back_ios_new)),
+        backgroundColor: Colorsmanegments.backgroundapp,
+        title: Text("All Doctor", style: TxtStyle.size24w400primary),
+      ),
         backgroundColor: Colorsmanegments.backgroundapp,
         body: SafeArea(
           child: BlocBuilder<DoctorCubit, GetDoctorsStates>(

@@ -155,7 +155,7 @@ class _SignupState extends State<Signup> {
                                   Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AllDoctor(),
+                                      builder: (context) => Homescreen(),
                                     ),
                                   );
                                 } else if (state is SignupErrorState) {
