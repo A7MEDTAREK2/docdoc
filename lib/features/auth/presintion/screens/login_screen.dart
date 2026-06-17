@@ -2,7 +2,7 @@ import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:docdoc/core/widgets/app_botton.dart';
 import 'package:docdoc/core/widgets/txtfield.dart';
-import 'package:docdoc/features/auth/logic/cubit.dart';
+import 'package:docdoc/features/auth/logic/cubit_login.dart';
 import 'package:docdoc/features/auth/logic/state.dart';
 import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/icons.dart';
 import '../../../all_doctor/presentation/screens/screen doctor.dart';
-import '../../data/login/request_body.dart';
+import '../../data/model/login/request_body.dart';
 import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {

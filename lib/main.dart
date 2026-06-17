@@ -1,4 +1,4 @@
-
+import 'package:dio/dio.dart';
 import 'package:docdoc/features/all_doctor/presentation/screens/screen%20doctor.dart';
 import 'package:docdoc/features/auth/logic/cubit_signup.dart';
 import 'package:docdoc/features/auth/presintion/screens/login_screen.dart';
@@ -6,7 +6,13 @@ import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'features/auth/logic/cubit.dart';
+import 'features/all_doctor/data/data_sours/data.dart';
+import 'features/all_doctor/data/repo/repo.dart';
+import 'features/all_doctor/logic/cubit.dart';
+import 'features/appointment/logic/_cubit.dart';
+import 'features/auth/data/datasourse/datasourse_login.dart';
+import 'features/auth/data/repo/repo_login.dart';
+import 'features/auth/logic/cubit_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,8 +45,11 @@ class MyApp extends StatelessWidget {
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
       home: MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => LoginCubit()),
-          ],
+        providers: [
+          BlocProvider(
+            create: (context) => LoginCubit(AuthloginRepo(LoginImp(Dio()))),
+          ),
+        ],
         child: const LoginScreen(),
       ),
       debugShowCheckedModeBanner: false,

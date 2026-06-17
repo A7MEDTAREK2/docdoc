@@ -1,7 +1,7 @@
 import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:docdoc/core/widgets/app_botton.dart';
-import 'package:docdoc/features/all_doctor/data/model_doctor.dart';
+import 'package:docdoc/features/all_doctor/data/model/model_doctor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +29,7 @@ class BookAppointmentScreen extends StatelessWidget {
         }
 
         if (state is StoreAppointmentSuccessState) {
-          Navigator.pop(context); // قفل الـ Loading Dialog
+          Navigator.pop(context); //
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('تم الحجز بنجاح! 🎉'), backgroundColor: Colors.green),
           );
@@ -37,7 +37,7 @@ class BookAppointmentScreen extends StatelessWidget {
         }
 
         if (state is StoreAppointmentErrorState) {
-          Navigator.pop(context); // قفل الـ Loading Dialog
+          Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('خطأ في الحجز: ${state.error}'), backgroundColor: Colors.red),
           );

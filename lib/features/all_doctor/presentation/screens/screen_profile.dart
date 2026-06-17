@@ -1,10 +1,13 @@
 import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:docdoc/core/widgets/app_botton.dart';
-import 'package:docdoc/features/all_doctor/data/model_doctor.dart';
+import 'package:docdoc/features/all_doctor/data/model/model_doctor.dart';
 import 'package:docdoc/features/appointment/presentation/appointment_Screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../appointment/logic/_cubit.dart';
 
 class ScreenProfile extends StatelessWidget {
   final DoctorModel doctor;
@@ -74,13 +77,21 @@ class ScreenProfile extends StatelessWidget {
             const SizedBox(height: 24),
 
 
-            InkWell(onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => BookAppointmentScreen(doctor: doctor),
-                ),
-              );
-            },child: AppBotton(width: double.infinity, txt: 'Book Now')),
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+
+                    builder: (_) => BlocProvider(
+                      // هنا بننشئ الـ Cubit في النطاق بتاع الصفحة الجديدة
+                      create: (context) => AppointmentCubit(),
+                      child: BookAppointmentScreen(doctor: doctor),
+                    ),
+                  ),
+                );
+              },
+              child: AppBotton(width: double.infinity, txt: 'Book Now'),
+            ),
           ],
         ),
       ),

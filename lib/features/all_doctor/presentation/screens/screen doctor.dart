@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:docdoc/features/all_doctor/logic/cubit.dart';
 import 'package:docdoc/features/all_doctor/logic/state.dart';
 import 'package:docdoc/features/all_doctor/presentation/wedgite/doctor_widget.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/theming/colors manegments.dart';
 import '../../../../core/theming/txt_style.dart';
+import '../../data/data_sours/data.dart';
+import '../../data/repo/repo.dart';
 
 
 class AllDoctor extends StatelessWidget {
@@ -14,39 +17,44 @@ class AllDoctor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DoctorCubit()..GetDoctor(),
-      child: Scaffold(appBar:   AppBar(leading: IconButton(onPressed:() => Navigator.pop(context),  icon: Icon(Icons.arrow_back_ios_new)),
-        backgroundColor: Colorsmanegments.backgroundapp,
-        title: Text("All Doctor", style: TxtStyle.size24w400primary),
-      ),
-        backgroundColor: Colorsmanegments.backgroundapp,
-        body: SafeArea(
-          child: BlocBuilder<DoctorCubit, GetDoctorsStates>(
-            builder: (context, state) {
-              if (state is GetDoctorsLoadingState) {
-                return const Center(child: CircularProgressIndicator());
-              }
-
-              if (state is GetDoctorsErrorState) {
-                return Center(child: Text(state.em));
-              }
-
-              if (state is GetDoctorsSuccessState) {
-                final doctors = state.doctorsResponse.data;
-                return ListView.builder(
-
-                  itemCount: doctors.length,
-
-                  itemBuilder: (context, index) {
-                    return DoctorWidget(doctor: doctors[index]);
-                  },
-                );
-              }
-
-              return const SizedBox();
-            },
-          ),
-        ),
+      create: (context) => DoctorCubit(Getrepo(GetDocoImpl(Dio())))..getDoctor(),
+      // نستخدم Builder للحصول على context جديد يرى الـ Cubit
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.arrow_back_ios_new)),
+              backgroundColor: Colorsmanegments.backgroundapp,
+              title: Text("All Doctor", style: TxtStyle.size24w400primary),
+            ),
+            backgroundColor: Colorsmanegments.backgroundapp,
+            body: SafeArea(
+              child: BlocBuilder<DoctorCubit, GetDoctorsStates>(
+                builder: (context, state) {
+                  // الآن هذا الـ context يرى الـ DoctorCubit بنجاح!
+                  if (state is GetDoctorsLoadingState) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (state is GetDoctorsErrorState) {
+                    return Center(child: Text(state.em));
+                  }
+                  if (state is GetDoctorsSuccessState) {
+                    final doctors = state.doctorsResponse.data;
+                    return ListView.builder(
+                      itemCount: doctors.length,
+                      itemBuilder: (context, index) {
+                        return DoctorWidget(doctor: doctors[index]);
+                      },
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }

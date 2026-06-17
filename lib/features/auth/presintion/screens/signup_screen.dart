@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:docdoc/core/widgets/app_botton.dart';
@@ -9,8 +10,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/theming/icons.dart';
 import '../../../all_doctor/presentation/screens/screen doctor.dart';
 import '../../../home/presintion/screens/home screen.dart';
-import '../../data/signup/signup_request.dart';
-import '../../logic/cubit.dart';
+import '../../data/datasourse/data_signup.dart';
+import '../../data/datasourse/datasourse_login.dart';
+import '../../data/model/signup/signup_request.dart';
+import '../../data/repo/repo_login.dart';
+import '../../data/repo/repo_signup.dart';
+import '../../logic/cubit_login.dart';
 import '../../logic/cubit_signup.dart';
 
 class Signup extends StatefulWidget {
@@ -42,7 +47,10 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => signupCubit(),
+      create: (context) => signupCubit(AuthsignupRepo(
+        signupImp(Dio()),
+      ),
+      ),
       child: Scaffold(
         backgroundColor: Colorsmanegments.backgroundapp,
         body: SafeArea(
@@ -208,7 +216,7 @@ class _SignupState extends State<Signup> {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) => BlocProvider(
-                                          create: (context) => LoginCubit(),
+                                          create: (context) => LoginCubit(AuthloginRepo(LoginImp(Dio()))),
                                           child: const LoginScreen(),
                                         ),
                                       ),

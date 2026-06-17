@@ -1,5 +1,5 @@
 
-import '../data/model_doctor.dart';
+import '../data/model/model_doctor.dart';
 
 class GetDoctorsStates {}
 
@@ -15,4 +15,17 @@ class GetDoctorsSuccessState extends GetDoctorsStates {
 class GetDoctorsErrorState extends GetDoctorsStates {
   String em;
   GetDoctorsErrorState({required this.em});
+}
+//search
+
+class SearchDoctorsLoadingState extends GetDoctorsStates {}
+
+class SearchDoctorsSuccessState extends GetDoctorsStates {
+  DoctorsResponse doctorsResponse;
+  SearchDoctorsSuccessState({required this.doctorsResponse});
+}
+
+class SearchDoctorsErrorState extends GetDoctorsStates {
+  String em;
+  SearchDoctorsErrorState({required this.em});
 }

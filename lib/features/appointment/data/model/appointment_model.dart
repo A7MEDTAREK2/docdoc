@@ -1,4 +1,4 @@
-import '../../../all_doctor/data/model_doctor.dart';
+import '../../../all_doctor/data/model/model_doctor.dart';
 import 'patient_model.dart';
 
 class AppointmentModel {

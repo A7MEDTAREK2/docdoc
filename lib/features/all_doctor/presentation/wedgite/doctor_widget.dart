@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../appointment/logic/_cubit.dart';
 import '../../../appointment/presentation/appointment_Screen.dart';
-import '../../data/model_doctor.dart';
+import '../../data/model/model_doctor.dart';
 
 class DoctorWidget extends StatelessWidget {
   final DoctorModel doctor;

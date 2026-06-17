@@ -1,9 +1,17 @@
 import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:flutter/material.dart';
+import '../../../all_doctor/presentation/wedgite/search_bar.dart';
 
 class CardWelcome extends StatelessWidget {
-  const CardWelcome({super.key});
+  final TextEditingController searchController;
+  final Function(String) onSearch;
+
+  const CardWelcome({
+    super.key,
+    required this.searchController,
+    required this.onSearch,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +25,17 @@ class CardWelcome extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Hello, Welcome",
-            style: TxtStyle.size14w400white,
-          ),
+          Text("Hello, Welcome", style: TxtStyle.size14w400white),
           const SizedBox(height: 8),
           Text(
             "Find your specialist and book an appointment.",
             style: TxtStyle.size14w400white,
           ),
           const SizedBox(height: 16),
-          SearchBar(
-            hintText: "Search for a doctor...",
-            leading: const Icon(Icons.search),
-            backgroundColor: MaterialStateProperty.all(Colors.white),
+          AppSearchBar(
+            hintText: 'search doctors',
+            controller: searchController,
+            onSubmitted: onSearch,
           ),
         ],
       ),
