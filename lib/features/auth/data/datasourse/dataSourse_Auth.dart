@@ -40,3 +40,28 @@ class signupImp implements AuthSignupdatasourse {
 
 
 }
+
+
+abstract class AuthLogindatasourse {
+  Future<Either<Failure, ResponseModel>> login(RequestBody body);
+}
+
+class LoginImp implements AuthLogindatasourse {
+  final Dio dio;
+
+  LoginImp(this.dio);
+
+  @override
+  Future<Either<Failure, ResponseModel>> login(RequestBody body) async {
+    try {
+      final response = await dio.post(ConstApi.login, data: body.toJson());
+      final responseModel = ResponseModel.fromJson(response.data);
+      final token = responseModel.data.token;
+      await TokenStorage.saveToken(token);
+      return right(responseModel);
+
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    }
+  }
+}

@@ -2,7 +2,7 @@ import 'package:docdoc/core/theming/colors%20manegments.dart';
 import 'package:docdoc/core/theming/txt_style.dart';
 import 'package:docdoc/core/widgets/app_botton.dart';
 import 'package:docdoc/core/widgets/txtfield.dart';
-import 'package:docdoc/features/auth/logic/cubit_login.dart';
+import 'package:docdoc/features/auth/logic/cubit_Auth.dart';
 import 'package:docdoc/features/auth/logic/state.dart';
 import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 30),
 
                       // Button
-                      BlocConsumer<LoginCubit, AuthState>(
+                      BlocConsumer<LoginCubit, Auth_login_State>(
                         listener: (context, state) {
                           if (state is AuthLoadedState) {
                             ScaffoldMessenger.of(context).showSnackBar(

@@ -10,7 +10,7 @@ class AppointmentCubit extends Cubit<AppointmentStates> {
 
   AppointmentCubit() : super(AppointmentInitialState());
 
-  // لستة هنخزن فيها الحجوزات عشان الـ UI يقدر يقرأ منها في أي وقت
+  // لستة هنخزن فيها الحجوزات عشان
   List<AppointmentModel> myAppointments = [];
 
   // 1. ميثود جلب الحجوزات من السيرفر
@@ -24,7 +24,7 @@ class AppointmentCubit extends Cubit<AppointmentStates> {
         myAppointments = responseModel.data ?? [];
         emit(GetAppointmentsSuccessState(myAppointments));
       } else {
-        emit(GetAppointmentsErrorState(responseModel.message ?? "حدث خطأ ما"));
+        emit(GetAppointmentsErrorState(responseModel.message ?? "Error"));
       }
     } catch (e) {
       emit(GetAppointmentsErrorState(e.toString()));

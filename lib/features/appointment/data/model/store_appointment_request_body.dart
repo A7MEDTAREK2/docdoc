@@ -10,7 +10,7 @@ class StoreAppointmentRequestBody {
   Map<String, dynamic> toJson() {
     return {
       'doctor_id': doctorId,
-      'start_time': startTime, // ده المفتاح اللي السيرفر بيقبله جوه الـ Body
+      'start_time': startTime,
     };
   }
 }

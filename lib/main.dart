@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:docdoc/features/all_doctor/presentation/screens/screen%20doctor.dart';
-import 'package:docdoc/features/auth/logic/cubit_signup.dart';
 import 'package:docdoc/features/auth/presintion/screens/login_screen.dart';
 import 'package:docdoc/features/home/presintion/screens/home%20screen.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +9,10 @@ import 'features/all_doctor/data/data_sours/data.dart';
 import 'features/all_doctor/data/repo/repo.dart';
 import 'features/all_doctor/logic/cubit.dart';
 import 'features/appointment/logic/_cubit.dart';
-import 'features/auth/data/datasourse/datasourse_login.dart';
-import 'features/auth/data/repo/repo_login.dart';
-import 'features/auth/logic/cubit_login.dart';
+import 'features/auth/data/datasourse/dataSourse_Auth.dart';
+import 'features/auth/data/repo/repo_Auth.dart';
+import 'features/auth/logic/cubit_Auth.dart';
+import 'features/splash/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,38 +21,21 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LoginCubit(AuthloginRepo(LoginImp(Dio()))),
+        ),
+        BlocProvider(
+          create: (context) => signupCubit(AuthsignupRepo(signupImp(Dio()))),
+        ),
+      ],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
       ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => LoginCubit(AuthloginRepo(LoginImp(Dio()))),
-          ),
-        ],
-        child: const LoginScreen(),
-      ),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

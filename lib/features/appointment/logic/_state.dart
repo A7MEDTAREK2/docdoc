@@ -17,7 +17,7 @@ class GetAppointmentsErrorState extends AppointmentStates {
   GetAppointmentsErrorState(this.error);
 }
 
-// --- حالات عمل حجز جديد (POST Store Appointment) ---
+// ---  (POST Store Appointment) ---
 class StoreAppointmentLoadingState extends AppointmentStates {}
 
 class StoreAppointmentSuccessState extends AppointmentStates {}

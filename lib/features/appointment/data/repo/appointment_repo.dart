@@ -5,7 +5,6 @@ import '../model/store_appointment_request_body.dart';
 class AppointmentRepo {
   final AppointmentWebServices _webServices = AppointmentWebServices();
 
-  // هندلة جلب الحجوزات وتحويلها لموديل
   Future<AppointmentsResponseModel> getAllAppointments(String token) async {
     try {
       final response = await _webServices.getAllAppointments(token);
@@ -15,7 +14,6 @@ class AppointmentRepo {
     }
   }
 
-  // هندلة الحجز الجديد
   Future<void> storeAppointment({
     required StoreAppointmentRequestBody requestBody,
     required String token,

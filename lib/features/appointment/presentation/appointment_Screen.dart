@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/service/token.dart';
 import '../logic/_cubit.dart';
 import '../logic/_state.dart';
-// 🔑 تأكد إن الـ import ده شغال ومساره صح لملف الـ storage بتاعك
 
 class BookAppointmentScreen extends StatelessWidget {
   final DoctorModel doctor;
@@ -31,15 +30,15 @@ class BookAppointmentScreen extends StatelessWidget {
         if (state is StoreAppointmentSuccessState) {
           Navigator.pop(context); //
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('تم الحجز بنجاح! 🎉'), backgroundColor: Colors.green),
+            const SnackBar(content: Text('The booking was successful! '), backgroundColor: Colors.green),
           );
-          Navigator.pop(context); // يرجع لشاشة البروفايل بعد النجاح
+          Navigator.pop(context);
         }
 
         if (state is StoreAppointmentErrorState) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('خطأ في الحجز: ${state.error}'), backgroundColor: Colors.red),
+            SnackBar(content: Text('Booking error: ${state.error}'), backgroundColor: Colors.red),
           );
         }
       },
@@ -116,14 +115,11 @@ class BookAppointmentScreen extends StatelessWidget {
                         .replaceAll('AM', '')
                         .trim();
 
-                    // 3. تجهيز تاريخ النهاردة بالفورمات المطلوب (YYYY-MM-DD)
                     DateTime now = DateTime.now();
                     String formattedDate = "${now.year}-${now.month.toString().padLeft(2, '0')}-${now.day.toString().padLeft(2, '0')}";
 
-                    // 4. دمج التاريخ والوقت (مثال: 2026-06-12 14:00)
                     String finalDateTime = "$formattedDate ${cleanTime.substring(0, 5)}";
 
-                    // 5. إرسال الطلب للسيرفر بالفورمات الصح للـ Postman
                     context.read<AppointmentCubit>().createAppointment(
                       doctorId: doctor.id,
                       startTime: finalDateTime,
