@@ -30,7 +30,7 @@ class AppointmentWebServices {
   }) async {
     try {
       final response = await _dio.post(
-        'https://vcare.integration25.com/api/appointment/store',
+        ConstApi.store,
         data: requestBody.toJson(),
         options: Options(
           headers: {

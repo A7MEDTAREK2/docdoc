@@ -21,4 +21,6 @@ class TxtStyle {
       fontSize: 14 , fontWeight: FontWeight.w300);
   static const TextStyle size24w400primary = TextStyle(color: Colorsmanegments.Primary,
       fontSize: 24 , fontWeight: FontWeight.w400);
+  static const TextStyle size20w400black = TextStyle(color: Colorsmanegments.black,
+      fontSize: 20 , fontWeight: FontWeight.w400);
 }

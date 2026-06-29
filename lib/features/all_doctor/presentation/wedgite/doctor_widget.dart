@@ -50,7 +50,7 @@ class DoctorWidget extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 5),
-                      Text(doctor.name, style: TxtStyle.size24w400black),
+                      Text(doctor.name, style: TxtStyle.size20w400black),
                       SizedBox(height: 5),
                       Text(
                         doctor.specialization.name,
@@ -62,7 +62,7 @@ class DoctorWidget extends StatelessWidget {
                           Icon(CupertinoIcons.time),
                           SizedBox(width: 4),
                           Text(doctor.startTime),
-                          SizedBox(width: 15),
+                          SizedBox(width: 10),
                           Text(doctor.endTime),
                         ],
                       ),
